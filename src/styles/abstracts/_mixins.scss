@@ -1,0 +1,35 @@
+/**
+* @desc         mixins of the app.
+* @requires     variables.scss
+*/
+
+
+// responsive breakpoint manager
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin media-sm {
+  @media screen and (min-width: 560px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
