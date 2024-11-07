@@ -42,11 +42,11 @@ const CartModule: FC = () => {
       style={rowStyles}
       gutter={[ 12, 24 ]}
     >
-
       {cart?.map((product) => (
         <Col
           key={product.id}
           span={!isMd ? 12 : 24}
+          style={{width: "100%"}}
         >
           <CustomCartCard product={product} />
         </Col>

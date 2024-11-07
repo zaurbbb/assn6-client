@@ -27,6 +27,10 @@ export const headerPrivateNavbar = [
     name: "Cart",
     icon: ShoppingCartOutlined,
     link: "/cart",
+  },{
+    name: "Profile",
+    icon: UserOutlined,
+    link: "/profile",
   },
   // {
   //   name: "Profile",

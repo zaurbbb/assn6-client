@@ -106,6 +106,7 @@ const ProductCard = ({
 
   return (
     <Flex
+      style={{ width: "100%" }}
       vertical
       gap={8}
     >

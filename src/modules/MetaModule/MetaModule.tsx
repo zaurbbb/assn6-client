@@ -31,10 +31,6 @@ const MetaModule: FC = () => {
   const hideFiltersModal = () => setIsFiltersModalOpen(false);
 
 
-  const {
-    data: getMetaData,
-  } = useGetMeta(api);
-
   // state for filters and sorters
   const [ selectedSorter, setSelectedSorter ] = useState("");
   const handleSorterChange = (value: string) => {

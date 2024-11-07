@@ -53,5 +53,8 @@ export const privateRoutes = [
 
   // order
   { path: "/order/:productId", element: <OrderPage /> },
+
+  // profile
+  { path: "/order/:productId", element: <ProfilePage /> },
 ];
 

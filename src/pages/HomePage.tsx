@@ -29,7 +29,7 @@ const HomePage: FC = () => {
           <Col
             span={5}
           >
-            {/*<MenuFiltersModule />*/}
+            <MenuFiltersModule />
           </Col>
         )}
         <Col

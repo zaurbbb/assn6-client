@@ -1,9 +1,10 @@
 import React, { FC } from "react";
+import ProfileModule from "../modules/ProfileModule/ProfileModule";
 
 const ProfilePage: FC = () => {
   return (
     <>
-      profik
+      <ProfileModule />
     </>
   );
 };

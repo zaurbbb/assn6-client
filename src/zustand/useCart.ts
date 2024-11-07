@@ -9,6 +9,7 @@ interface CartStoreActions {
   addToCart: (item: any) => void;
   removeFromCart: (itemId: any) => void;
   deleteProductFromCart: (itemId: any) => void;
+  clearCart: () => void;
   getItemQuantity: (itemId: any) => (state: CartState) => number;
 }
 
@@ -52,9 +53,10 @@ export const useCartStore = create<CartStore>()(
         }));
       },
 
+      clearCart: () => set({ cart: [] }),
+
       getItemQuantity: (itemId) => {
         const item = get().cart.find((cartItem) => cartItem.id === +itemId);
-        console.log("item", item);
         return item ? item.quantity : 0;
       },
     }),

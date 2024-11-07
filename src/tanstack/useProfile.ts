@@ -1,5 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../api/fn/profile";
+import {
+  useMutation,
+  useQuery,
+} from "@tanstack/react-query";
+import {
+  getProfile,
+  patchProfile,
+} from "../api/fn/profile";
+import { deleteUserByIdFn } from "../api/fn/users";
+import { onQuerySuccess } from "./index";
 
 export const useGetProfile = (api) =>
   useQuery({
@@ -20,4 +28,18 @@ export const useGetFavorites = (api) =>
     retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
+  });
+
+export const useDeleteUserById = (api) => {
+  return useMutation({
+    mutationFn: (id) => deleteUserByIdFn(api, id),
+    onSuccess: onQuerySuccess(["useGetUsers"]),
+  });
+};
+
+export const usePatchProfile = (api) =>
+  useMutation({
+    mutationKey: [ "usePatchProfile" ],
+    mutationFn: (data) => patchProfile(api, data),
+    onSuccess: onQuerySuccess(["useGetProfile"]),
   });

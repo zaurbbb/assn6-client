@@ -55,7 +55,7 @@ const RecommendedModule = () => {
   const {
     addToCart,
     removeFromCart,
-    getItemQuantity
+    getItemQuantity,
   } = useCartStore();
 
   const itemQuantity = getItemQuantity(productId);
@@ -105,13 +105,29 @@ const RecommendedModule = () => {
     image_url,
   } = product;
 
-
+  const rowStyles = {
+    width: '100%',
+  };
   return (
-    <Space direction="vertical" style={spaceStyles}>
+    <Space
+      direction="vertical"
+      style={spaceStyles}
+    >
       <Title style={titleStyles}>Рекомендованные товары</Title>
-      {recommendedProducts.map((product: IProduct) => (
-        <CustomProductCard product={product} />
-      ))}
+      <Row
+        style={rowStyles}
+        gutter={[ 12, 24 ]}
+        // justify="space-between"
+      >
+        {recommendedProducts.map((product: IProduct) => (
+          <Col
+            key={product.id}
+            span={6}
+          >
+            <CustomProductCard product={product} />
+          </Col>
+        ))}
+      </Row>
     </Space>
   );
 };

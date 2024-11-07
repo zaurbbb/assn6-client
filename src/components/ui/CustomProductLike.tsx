@@ -7,6 +7,14 @@ import React, {
   useMemo,
 } from "react";
 import {
+  postLikeProductFn,
+  postUnlikeProductFn,
+} from "../../api/fn/liked";
+import {
+  useLikeProduct,
+  useUnlikeProduct,
+} from "../../tanstack/useLiked";
+import {
   usePostAddFavoriteProduct,
   usePostRemoveFavoriteProduct,
 } from "../../tanstack/useProducts";
@@ -15,44 +23,34 @@ import { useFavoritesStore } from "../../zustand/useFavorites";
 import { useIsAuthStore } from "../../zustand/useIsAuth";
 
 const CustomProductLike = ({
+  liked,
   productId,
 }: {
+  liked: boolean;
   productId: number;
 }) => {
   const [ api ] = notification.useNotification();
-  const { favorites, changeFavorites } = useFavoritesStore();
-  const { isAuth } = useIsAuthStore();
-  const isFavorite = useMemo(() => favorites.some((favorite) => {
-    return favorite.id === productId;
-  }), [ favorites ]);
-
+  // const { favorites, changeFavorites } = useFavoritesStore();
+  // const { isAuth } = useIsAuthStore();
+  // const isFavorite = useMemo(() => favorites.some((favorite) => {
+  //   return favorite.id === productId;
+  // }), [ favorites ]);
+  //
+  // const {
+  //   data: getFavorites = [],
+  //   isLoading: isGetFavoritesLoading,
+  //   isRefetching: isFavoritesRefetching,
+  // } = useGetFavorites(api);
+  // useEffect(() => {
+  //   changeFavorites(getFavorites);
+  // }, [ isFavoritesRefetching ]);
+  //
   const {
-    data: getFavorites = [],
-    isLoading: isGetFavoritesLoading,
-    isRefetching: isFavoritesRefetching,
-  } = useGetFavorites(api);
-  useEffect(() => {
-    changeFavorites(getFavorites);
-  }, [ isFavoritesRefetching ]);
-
-  const {
-    mutateAsync: postAddFavoriteProduct,
-  } = usePostAddFavoriteProduct(api);
-  const {
-    mutateAsync: postRemoveFavoriteProduct,
-  } = usePostRemoveFavoriteProduct(api);
+    mutateAsync: postLikeProduct,
+  } = useLikeProduct(api);
 
   const toggleLike = async () => {
-    if (isAuth) {
-      if (!isFavorite) {
-        await postAddFavoriteProduct(productId);
-        return;
-      }
-
-      await postRemoveFavoriteProduct(productId);
-    } else {
-      changeFavorites([]);
-    }
+    await postLikeProduct(productId);
   };
 
   const likeButtonStyles: CSSProperties = {
@@ -64,13 +62,13 @@ const CustomProductLike = ({
 
     padding: '1.2rem',
 
-    background: isFavorite ? "rgba(255,53,53,0.25)" : "rgba(255,255,255,0.25)",
+    background: liked ? "rgba(255,53,53,0.25)" : "rgba(136,136,136,0.5)",
 
     borderRadius: '20%',
 
     fontSize: '24px',
 
-    color: isFavorite ? "#FF3535" : "#ffffff",
+    color: liked ? "#FF3535" : "#ffffff",
 
     opacity: 0.8,
   };

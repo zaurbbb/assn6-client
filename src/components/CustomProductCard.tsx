@@ -16,10 +16,9 @@ interface ProductCardProps {
     id: number;
     name: string;
     price: number;
-    inStock: boolean;
     image_url: string;
     category: string;
-    kit: number;
+    liked: boolean;
   };
 }
 
@@ -28,10 +27,9 @@ const ProductCard = ({
     id,
     name,
     price,
-    inStock,
     image_url,
     category,
-    kit,
+    liked,
   },
 }: ProductCardProps) => {
   const { isMd } = useScreenSize();
@@ -109,7 +107,10 @@ const ProductCard = ({
               style={imageStyles}
             />
           </Link>
-          <CustomProductLike productId={id} />
+          <CustomProductLike
+            liked={liked}
+            productId={id}
+          />
         </Flex>
       }
     >

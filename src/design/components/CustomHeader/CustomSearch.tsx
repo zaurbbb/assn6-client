@@ -1,9 +1,19 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from 'antd';
 import React, { FC } from "react";
+import { useSearchStore } from "../../../zustand/useSearch";
 
 const CustomSearch: FC = () => {
-  // const onSearch = (value: string) => console.log(value);
+  const {
+    search,
+    changeSearch,
+  } = useSearchStore();
+  const onSearch = (value: string) => {
+    changeSearch({
+      ...search,
+      search: value,
+    });
+  }
 
   // styles
   const inputStyles = {
@@ -21,8 +31,8 @@ const CustomSearch: FC = () => {
       prefix={null}
       suffix={null}
       variant="borderless"
-      placeholder="плитка оникс"
-      // onSearch={onSearch}
+      placeholder="поиск"
+      onChange={(e) => onSearch(e.target.value)}
     />
   );
 };

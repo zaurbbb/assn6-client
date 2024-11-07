@@ -4,30 +4,17 @@ import {
   Row,
   Typography,
 } from "antd";
-import React, {
-  FC,
-  useEffect,
-} from "react";
+import React, { FC } from "react";
 import CustomProductCard from "../../components/CustomProductCard";
 import CustomSpin from "../../components/CustomSpin";
-import { useGetFavorites } from "../../tanstack/useProfile";
-import { useFavoritesStore } from "../../zustand/useFavorites";
+import { useGetLikedProducts } from "../../tanstack/useLiked";
 
 const FavoritesModule: FC = () => {
   const [ api ] = notification.useNotification();
-  const { changeFavorites } = useFavoritesStore();
-
   const {
-    data: getFavorites = [],
-    isLoading: isGetFavoritesLoading,
-    isRefetching: isFavoritesRefetching,
-  } = useGetFavorites(api);
-
-  const isLoading = isGetFavoritesLoading;
-
-  useEffect(() => {
-    changeFavorites(getFavorites);
-  }, [ isFavoritesRefetching ]);
+    data,
+    isLoading,
+  } = useGetLikedProducts(api);
 
   const rowStyles = {
     width: '100%',
@@ -40,14 +27,14 @@ const FavoritesModule: FC = () => {
         gutter={[ 12, 24 ]}
       >
         {isLoading && <CustomSpin />}
-        {!isLoading && getFavorites.length === 0 && (
+        {!isLoading && data.length === 0 && (
           <Col span={24}>
             <Typography.Title level={4}>
               Нет избранных товаров
             </Typography.Title>
           </Col>
         )}
-        {!isLoading && getFavorites.length > 0 && getFavorites.map((product) => (
+        {!isLoading && data.length > 0 && data.map((product) => (
           <Col
             key={product.id}
             xs={12}

@@ -67,6 +67,7 @@ const ProductsModule: FC = () => {
     width: '100%',
   };
 
+
   const CustomPagination = () => {
     // if (total > 0) {
     return (
@@ -80,6 +81,12 @@ const ProductsModule: FC = () => {
     );
     // }
   };
+
+  if (isLoading) {
+    return (
+      <CustomSpin />
+    );
+  }
   return (
     <>
       <Row

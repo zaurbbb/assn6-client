@@ -5,17 +5,17 @@ import {
   responseAnswer,
 } from "../index";
 
-export const getProfile = async (api) =>
-  await API.get("/profile/")
+export const getCartFn = async (api) =>
+  await API.get("/cart/")
     .then((response) => responseAnswer(response, api))
     .catch((error) => errorAnswer(error));
 
-export const patchProfile = async (api, data) =>
-  await API.patch("/profile/", data, multiPartFormDataConfig)
+export const postCartFn = async (api, data) =>
+  await API.post("/cart/", data)
     .then((response) => responseAnswer(response, api))
     .catch((error) => errorAnswer(error));
 
-export const deleteProfile = async (api) =>
-  await API.delete("/v1/profile")
+export const deleteCartFn = async (api, id) =>
+  await API.delete(`/cart/${id}`)
     .then((response) => responseAnswer(response, api))
     .catch((error) => errorAnswer(error));

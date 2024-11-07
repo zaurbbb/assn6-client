@@ -17,6 +17,8 @@ export const useSearchStore = create<SearchStore>()(
       search: {
         limit: 10,
         page: 1,
+        min_price: 0,
+        max_price: 50000,
       },
       changeSearch: (search) => set(() => {
         return { search }
