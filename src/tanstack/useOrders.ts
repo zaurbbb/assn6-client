@@ -4,15 +4,15 @@ import {
 } from "@tanstack/react-query";
 import {
   getOrderByIdFn,
-  getOrderFn,
+  getOrdersFn,
   postOrderFn,
 } from "../api/fn/orders";
 import { onQuerySuccess } from "./index";
 
-export const useGetOrder = (api) =>
+export const useGetOrders = (api) =>
   useQuery({
     queryKey: [ "useGetOrder" ],
-    queryFn: () => getOrderFn(api),
+    queryFn: () => getOrdersFn(api),
     retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

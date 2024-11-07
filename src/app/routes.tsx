@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import OrdersPage from "../pages/OrdersPage";
 
 const LoginPage = lazy(() => import("../pages/LoginPage.tsx"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage.tsx"));
@@ -51,10 +52,7 @@ export const privateRoutes = [
   // cart
   { path: "/cart", element: <CartPage /> },
 
-  // order
-  { path: "/order/:productId", element: <OrderPage /> },
-
-  // profile
-  { path: "/order/:productId", element: <ProfilePage /> },
+  // orders
+  { path: "/orders", element: <OrdersPage /> },
 ];
 

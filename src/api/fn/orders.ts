@@ -5,7 +5,7 @@ import {
   responseAnswer,
 } from "../index";
 
-export const getOrderFn = async (api) =>
+export const getOrdersFn = async (api) =>
   await API.get("/cart/orders/")
     .then((response) => responseAnswer(response, api))
     .catch((error) => errorAnswer(error));

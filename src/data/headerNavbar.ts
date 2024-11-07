@@ -3,6 +3,7 @@ import {
   LoginOutlined,
   LogoutOutlined,
   ShoppingCartOutlined,
+  UnorderedListOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 
@@ -27,7 +28,11 @@ export const headerPrivateNavbar = [
     name: "Cart",
     icon: ShoppingCartOutlined,
     link: "/cart",
-  },{
+  }, {
+    name: "Orders",
+    icon: UnorderedListOutlined,
+    link: "/orders",
+  }, {
     name: "Profile",
     icon: UserOutlined,
     link: "/profile",
